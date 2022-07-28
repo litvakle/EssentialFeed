@@ -146,9 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				3AF61BCA2890348600E613D7 /* EssentialFeedMacOS.h */,
-				3AF61BDD2890DF8C00E613D7 /* FeedItem.swift */,
+				3AF61BEB2892990900E613D7 /* Feed Feature */,
 				3AF61BE328910AB200E613D7 /* Feed API */,
-				3AF61BDF2890DFC100E613D7 /* FeedLoader.swift */,
 			);
 			path = EssentialFeedMacOS;
 			sourceTree = "<group>";
@@ -178,6 +177,15 @@
 				3AF61BE12890E0A400E613D7 /* RemoteFeedLoaderTests.swift */,
 			);
 			path = "Feed API";
+			sourceTree = "<group>";
+		};
+		3AF61BEB2892990900E613D7 /* Feed Feature */ = {
+			isa = PBXGroup;
+			children = (
+				3AF61BDD2890DF8C00E613D7 /* FeedItem.swift */,
+				3AF61BDF2890DFC100E613D7 /* FeedLoader.swift */,
+			);
+			path = "Feed Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
