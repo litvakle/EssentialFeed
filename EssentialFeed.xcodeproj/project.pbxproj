@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AB4BA8A2893BCC600E68765 /* XCTestMemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4BA892893BCC600E68765 /* XCTestMemoryLeakTracking.swift */; };
 		3AF61BA9289021AD00E613D7 /* EssentialFeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF61BA8289021AD00E613D7 /* EssentialFeedApp.swift */; };
 		3AF61BAB289021AD00E613D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF61BAA289021AD00E613D7 /* ContentView.swift */; };
 		3AF61BAD289021AF00E613D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF61BAC289021AF00E613D7 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3AB4BA892893BCC600E68765 /* XCTestMemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestMemoryLeakTracking.swift; sourceTree = "<group>"; };
 		3AF61BA5289021AD00E613D7 /* EssentialFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF61BA8289021AD00E613D7 /* EssentialFeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedApp.swift; sourceTree = "<group>"; };
 		3AF61BAA289021AD00E613D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AB4BA8B2893BCCA00E68765 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AB4BA892893BCC600E68765 /* XCTestMemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		3AF61B9C289021AD00E613D7 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +186,7 @@
 		3AF61BEA28927CD200E613D7 /* Feed API */ = {
 			isa = PBXGroup;
 			children = (
+				3AB4BA8B2893BCCA00E68765 /* Helpers */,
 				3AF61BE12890E0A400E613D7 /* RemoteFeedLoaderTests.swift */,
 				3AF61BEC2892B59E00E613D7 /* URLSessionHTTPClientTests.swift */,
 			);
@@ -391,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF61BE22890E0A400E613D7 /* RemoteFeedLoaderTests.swift in Sources */,
+				3AB4BA8A2893BCC600E68765 /* XCTestMemoryLeakTracking.swift in Sources */,
 				3AF61BED2892B59E00E613D7 /* URLSessionHTTPClientTests.swift in Sources */,
 				3AF61BD52890348700E613D7 /* EssentialFeedMacOSTests.swift in Sources */,
 			);
