@@ -1,13 +1,13 @@
 //
-//  EssentialFeedTests.swift
-//  EssentialFeedTests
+//  EssentialFeedMacOSEndToEndTests.swift
+//  EssentialFeedMacOSEndToEndTests
 //
-//  Created by Lev Litvak on 26.07.2022.
+//  Created by Lev Litvak on 29.07.2022.
 //
 
 import XCTest
 
-class EssentialFeedTests: XCTestCase {
+class EssentialFeedMacOSEndToEndTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
