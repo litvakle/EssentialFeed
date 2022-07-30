@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A61B4AF2895027D005C177C /* CI.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3A61B4AE2895027D005C177C /* CI.yml */; };
 		3A916DAB28941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A916DAA28941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests.swift */; };
 		3A916DAC28941FAC00997EB4 /* EssentialFeedMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF61BC82890348600E613D7 /* EssentialFeedMacOS.framework */; };
 		3A916DB22894201E00997EB4 /* EssentialFeedEndToEndAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A916DA228940C1F00997EB4 /* EssentialFeedEndToEndAPITests.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A61B4AE2895027D005C177C /* CI.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = CI.yml; sourceTree = "<group>"; };
 		3A916DA228940C1F00997EB4 /* EssentialFeedEndToEndAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedEndToEndAPITests.swift; sourceTree = "<group>"; };
 		3A916DA828941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedMacOSEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A916DAA28941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedMacOSEndToEndTests.swift; sourceTree = "<group>"; };
@@ -88,22 +86,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A61B4AC2895027D005C177C /* .github */ = {
-			isa = PBXGroup;
-			children = (
-				3A61B4AD2895027D005C177C /* workflows */,
-			);
-			path = .github;
-			sourceTree = "<group>";
-		};
-		3A61B4AD2895027D005C177C /* workflows */ = {
-			isa = PBXGroup;
-			children = (
-				3A61B4AE2895027D005C177C /* CI.yml */,
-			);
-			path = workflows;
-			sourceTree = "<group>";
-		};
 		3A916DA928941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +106,6 @@
 		3AF61B9C289021AD00E613D7 = {
 			isa = PBXGroup;
 			children = (
-				3A61B4AC2895027D005C177C /* .github */,
 				3AF61BC92890348600E613D7 /* EssentialFeedMacOS */,
 				3AF61BD32890348700E613D7 /* EssentialFeedMacOSTests */,
 				3A916DA928941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests */,
@@ -312,7 +293,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A61B4AF2895027D005C177C /* CI.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
