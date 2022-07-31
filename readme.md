@@ -1,0 +1,1 @@
+[![CI](https://github.com/litvakle/EssentialFeed/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/litvakle/EssentialFeed/actions/workflows/CI.yml)
