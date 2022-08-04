@@ -89,6 +89,10 @@ class URLSessionHTTPClientTests: XCTestCase {
         return sut
     }
     
+    func anyData() -> Data {
+        return Data("any data".utf8)
+    }
+    
     private func resultError(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) -> Error? {
         let result = resultFor(data: data, response: response, error: error, file: file, line: line)
         
@@ -128,18 +132,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         return receivedResult
-    }
-    
-    private func anyURL() -> URL {
-        return URL(string: "http://any-url.com")!
-    }
-    
-    private func anyData() -> Data {
-        return Data("any data".utf8)
-    }
-    
-    private func anyNSError() -> NSError {
-        return NSError(domain: "any error", code: 1)
     }
     
     private func nonHTTPURLResponse() -> URLResponse {
