@@ -7,25 +7,32 @@
 
 import Foundation
 
-public final class LocalFeedLoader: FeedLoader {
-    private let store: FeedStore
+private final class FeedCachePolicy {
     private let currentDate: () -> Date
+    private var maxCacheAgeInDays: Int { return 7 }
+    private let calendar = Calendar(identifier: .gregorian)
     
-    let calendar = Calendar(identifier: .gregorian)
-    
-    public init(store: FeedStore, currentDate: @escaping () -> Date) {
-        self.store = store
+    init(currentDate: @escaping () -> Date) {
         self.currentDate = currentDate
     }
     
-    private var maxCacheAgeInDays: Int { return 7 }
-    
-    private func validate(_ timeStamp: Date) -> Bool {
+    func validate(_ timeStamp: Date) -> Bool {
         guard let maxCachedAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to:  timeStamp) else { return false }
         
         return currentDate() < maxCachedAge
     }
+}
+
+public final class LocalFeedLoader: FeedLoader {
+    private let store: FeedStore
+    private let currentDate: () -> Date
+    private let cachePolicy: FeedCachePolicy
     
+    public init(store: FeedStore, currentDate: @escaping () -> Date) {
+        self.store = store
+        self.currentDate = currentDate
+        self.cachePolicy = FeedCachePolicy(currentDate: currentDate)
+    }
 }
  
 extension LocalFeedLoader {
@@ -62,7 +69,7 @@ extension LocalFeedLoader {
             switch result {
             case let .failure(error):
                 completion(.failure(error))
-            case let .found(feed, timeStamp) where self.validate(timeStamp):
+            case let .found(feed, timeStamp) where self.cachePolicy.validate(timeStamp):
                 completion(.success(feed.toModels()))
             case .found, .empty:
                 completion(.success([]))
@@ -79,7 +86,7 @@ extension LocalFeedLoader {
             switch result {
             case .failure:
                 self.store.deleteCachedFeed { _ in }
-            case let .found(_, timestamp) where !self.validate(timestamp):
+            case let .found(_, timestamp) where !self.cachePolicy.validate(timestamp):
                 self.store.deleteCachedFeed { _ in }
             case .empty, .found:
                 break
