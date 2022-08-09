@@ -24,7 +24,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         
         insert((feed, timestamp), to: sut)
         
-        expect(sut, toRetrieve: .found(feed: feed, timeStamp: timestamp), file: file, line: line)
+        expect(sut, toRetrieve: .found(feed: feed, timestamp: timestamp), file: file, line: line)
     }
     
     func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
@@ -33,7 +33,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         
         insert((feed, timestamp), to: sut)
         
-        expect(sut, toRetrieveTwice: .found(feed: feed, timeStamp: timestamp), file: file, line: line)
+        expect(sut, toRetrieveTwice: .found(feed: feed, timestamp: timestamp), file: file, line: line)
     }
     
     func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
@@ -60,7 +60,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         let latestInsertionError = insert((latestFeed, latestTimestamp), to: sut)
         XCTAssertNil(latestInsertionError, "Expected to override cache successfully")
         
-        expect(sut, toRetrieve: .found(feed: latestFeed, timeStamp: latestTimestamp), file: file, line: line)
+        expect(sut, toRetrieve: .found(feed: latestFeed, timestamp: latestTimestamp), file: file, line: line)
     }
     
     func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
