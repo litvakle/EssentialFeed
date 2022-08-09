@@ -31,6 +31,8 @@
 		3A48E59528A272C900EC132B /* EssentialFeedMacOSCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A48E59428A272C900EC132B /* EssentialFeedMacOSCacheIntegrationTests.swift */; };
 		3A48E59628A272C900EC132B /* EssentialFeedMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF61BC82890348600E613D7 /* EssentialFeedMacOS.framework */; };
 		3A48E59C28A2759600EC132B /* XCTestMemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4BA892893BCC600E68765 /* XCTestMemoryLeakTracking.swift */; };
+		3A48E59D28A27B6300EC132B /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A48E572289BDCEE00EC132B /* FeedCacheTestHelpers.swift */; };
+		3A48E59E28A27B9A00EC132B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A48E574289BDE1600EC132B /* SharedTestHelpers.swift */; };
 		3A61B4B1289648C8005C177C /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A61B4B0289648C8005C177C /* readme.md */; };
 		3A916DAB28941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A916DAA28941FAC00997EB4 /* EssentialFeedMacOSEndToEndTests.swift */; };
 		3A916DAC28941FAC00997EB4 /* EssentialFeedMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF61BC82890348600E613D7 /* EssentialFeedMacOS.framework */; };
@@ -460,7 +462,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A48E59E28A27B9A00EC132B /* SharedTestHelpers.swift in Sources */,
 				3A48E59528A272C900EC132B /* EssentialFeedMacOSCacheIntegrationTests.swift in Sources */,
+				3A48E59D28A27B6300EC132B /* FeedCacheTestHelpers.swift in Sources */,
 				3A48E59C28A2759600EC132B /* XCTestMemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
