@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import EssentialFeedMacOS
+import EssentialFeed
 
 func uniqueImageFeed() -> (model: [FeedImage], local: [LocalFeedImage]) {
     let models = [uniqueImage(), uniqueImage()]

@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3AF61BC72890348600E613D7"
                BuildableName = "EssentialFeedMacOS.framework"
-               BlueprintName = "EssentialFeedMacOS"
+               BlueprintName = "EssentialFeed"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3AF61BC72890348600E613D7"
             BuildableName = "EssentialFeedMacOS.framework"
-            BlueprintName = "EssentialFeedMacOS"
+            BlueprintName = "EssentialFeed"
             ReferencedContainer = "container:EssentialFeed.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -46,7 +46,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3AF61BCE2890348700E613D7"
                BuildableName = "EssentialFeedMacOSTests.xctest"
-               BlueprintName = "EssentialFeedMacOSTests"
+               BlueprintName = "EssentialFeedTests"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,7 +57,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A916DA728941FAC00997EB4"
                BuildableName = "EssentialFeedMacOSEndToEndTests.xctest"
-               BlueprintName = "EssentialFeedMacOSEndToEndTests"
+               BlueprintName = "EssentialFeedEndToEndTests"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -68,7 +68,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A48E59128A272C900EC132B"
                BuildableName = "EssentialFeedMacOSCacheIntegrationTests.xctest"
-               BlueprintName = "EssentialFeedMacOSCacheIntegrationTests"
+               BlueprintName = "EssentialFeedCacheIntegrationTests"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -96,7 +96,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3AF61BC72890348600E613D7"
             BuildableName = "EssentialFeedMacOS.framework"
-            BlueprintName = "EssentialFeedMacOS"
+            BlueprintName = "EssentialFeed"
             ReferencedContainer = "container:EssentialFeed.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

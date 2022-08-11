@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import EssentialFeedMacOS
+import EssentialFeed
 
 internal class FeedStoreSpy: FeedStore {
     enum ReceivedMessage: Equatable {

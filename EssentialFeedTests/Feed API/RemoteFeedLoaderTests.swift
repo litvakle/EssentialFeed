@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import EssentialFeedMacOS
+import EssentialFeed
 
 class LoadFeedFromRemoteUsecaseTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {

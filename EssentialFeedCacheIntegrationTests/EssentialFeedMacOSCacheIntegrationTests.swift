@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import EssentialFeedMacOS
+import EssentialFeed
 
 class EssentialFeedMacOSCacheIntegrationTests: XCTestCase {
     override func setUp() {

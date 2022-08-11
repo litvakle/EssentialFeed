@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import EssentialFeedMacOS
+import EssentialFeed
 
 class URLSessionHTTPClientTests: XCTestCase {
  
