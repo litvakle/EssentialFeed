@@ -7,22 +7,23 @@
 
 import Foundation
 import EssentialFeed
-import UIKit
 
-final class FeedImageViewModel {
+final class FeedImageViewModel<Image> {
     typealias Observer<T> = ((T) -> Void)
     
+    private var task: FeedImageDataLoaderTask?
     private let model: FeedImage
     private let loader: FeedImageDataLoader
-    private var task: FeedImageDataLoaderTask?
+    private let imageTransformer: (Data) -> Image?
     
-    init(model: FeedImage, loader: FeedImageDataLoader) {
+    init(model: FeedImage, loader: FeedImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
         self.loader = loader
+        self.imageTransformer = imageTransformer
     }
     
     var onImageLoadingChangeState: Observer<Bool>?
-    var onImageLoad: Observer<UIImage>?
+    var onImageLoad: Observer<Image>?
     var onShouldRetryImageLoadStateChange: Observer<Bool>?
     
     var description: String? {
@@ -42,14 +43,18 @@ final class FeedImageViewModel {
         onShouldRetryImageLoadStateChange?(false)
         
         task = loader.loadImageData(from: model.url) { [weak self] result in
-            if let image = (try? result.get()).flatMap(UIImage.init) {
-                self?.onImageLoad?(image)
-            } else {
-                self?.onShouldRetryImageLoadStateChange?(true)
-            }
-            
-            self?.onImageLoadingChangeState?(false)
+            self?.handle(result)
         }
+    }
+    
+    private func handle(_ result: FeedImageDataLoader.Result) {
+        if let image = (try? result.get()).flatMap(imageTransformer) {
+            onImageLoad?(image)
+        } else {
+            onShouldRetryImageLoadStateChange?(true)
+        }
+        
+        onImageLoadingChangeState?(false)
     }
     
     func cancelImageDataLoad() {
