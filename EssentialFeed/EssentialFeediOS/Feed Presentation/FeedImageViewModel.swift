@@ -60,5 +60,12 @@ final class FeedImageViewModel<Image> {
     func cancelImageDataLoad() {
         task?.cancel()
         task = nil
+        releaseCellForReuse()
+    }
+    
+    private func releaseCellForReuse() {
+        onImageLoad = nil
+        onImageLoadingChangeState = nil
+        onShouldRetryImageLoadStateChange = nil
     }
 }
