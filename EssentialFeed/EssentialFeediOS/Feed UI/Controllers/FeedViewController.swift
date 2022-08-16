@@ -26,7 +26,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         refreshController?.refresh()
         tableView.registerCellForReuse(for: FeedImageCell.self)
         
-        title = "My feed"
+        title = FeedPresenter.title
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
