@@ -15,7 +15,7 @@ final class FeedImageCellController {
     }
     
     func view(in tableView: UITableView) -> UITableViewCell {
-        let cell = binded(tableView.dequeueReusableCell(withIdentifier: "FeedImageCell") as! FeedImageCell)
+        let cell: FeedImageCell = binded(tableView.dequeueReusableCell())
         viewModel.loadImageData()
         
         return cell

@@ -24,7 +24,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         refreshControl = refreshController?.view
         tableView.prefetchDataSource = self
         refreshController?.refresh()
-        tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
+        tableView.registerCellForReuse(for: FeedImageCell.self)
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
