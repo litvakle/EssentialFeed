@@ -1,9 +1,0 @@
-/* 
-  Feed.strings
-  EssentialFeed
-
-  Created by Lev Litvak on 16.08.2022.
-  
-*/
-"FEED_VIEW_TITLE" = "My feed";
-"FEED_VIEW_CONNECTION_ERROR" = "Couldn't connect to server"
