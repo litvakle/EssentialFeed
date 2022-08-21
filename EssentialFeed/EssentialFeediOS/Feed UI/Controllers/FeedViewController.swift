@@ -7,8 +7,9 @@
 
 import UIKit
 
-final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
+final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedErrorView {
     private var refreshController: FeedRefreshViewController?
+    @IBOutlet private(set) public var errorView: ErrorView!
     var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
@@ -25,6 +26,14 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         tableView.prefetchDataSource = self
         refreshController?.refresh()
         tableView.registerCellForReuse(for: FeedImageCell.self)
+    }
+    
+    func display(_ viewModel: FeedErrorViewModel) {
+        if let message = viewModel.message {
+            errorView?.show(message: message)
+        } else {
+            errorView?.hideMessage()
+        }
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
