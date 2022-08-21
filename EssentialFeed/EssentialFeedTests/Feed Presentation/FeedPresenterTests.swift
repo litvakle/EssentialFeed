@@ -43,7 +43,15 @@ class FeedPresenter {
         self.errorView = errorView
     }
     
-    private var loadError: String {
+    static var title: String {
+        NSLocalizedString(
+            "FEED_VIEW_TITLE",
+            tableName: "Feed",
+            bundle: Bundle(for: FeedPresenter.self),
+            comment: "Title for the feed view")
+    }
+    
+    static var loadError: String {
         NSLocalizedString(
             "FEED_VIEW_CONNECTION_ERROR",
             tableName: "Feed",
@@ -63,11 +71,15 @@ class FeedPresenter {
     
     func didFinishLoadingFeed(with error: Error) {
         loadingView.display(FeedLoadingViewModel(isLoading: false))
-        errorView.display(FeedErrorViewModel(message: loadError))
+        errorView.display(FeedErrorViewModel(message: FeedPresenter.loadError))
     }
 }
 
 class FeedPresenterTests: XCTestCase {
+    func test_title_isLocalized() {
+        XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE"))
+    }
+    
     func test_init_doesNotSentMessagesToView() {
         let (_, view) = makeSUT()
         
