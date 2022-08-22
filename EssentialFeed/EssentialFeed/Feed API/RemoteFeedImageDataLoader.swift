@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RemoteFeedImageDataLoader {
+public class RemoteFeedImageDataLoader: FeedImageDataLoader {
     let client: HTTPClient
     
     public enum Error: Swift.Error {
@@ -39,9 +39,9 @@ public class RemoteFeedImageDataLoader {
             completion = nil
         }
     }
-    
+
     @discardableResult
-    public func loadImageDataFromURL(url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
+    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
         let task = HTTPClientTaskWrapper(completion)
         task.wrapped = client.get(from: url) { [weak self] result in
             guard self != nil else { return }
