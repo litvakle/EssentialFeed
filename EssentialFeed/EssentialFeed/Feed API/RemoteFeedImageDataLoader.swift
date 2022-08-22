@@ -10,6 +10,10 @@ import Foundation
 public class RemoteFeedImageDataLoader {
     let client: HTTPClient
     
+    public enum Error: Swift.Error {
+        case invalidData
+    }
+    
     public init(client: HTTPClient) {
         self.client = client
     }
@@ -17,10 +21,10 @@ public class RemoteFeedImageDataLoader {
     public func loadImageDataFromURL(url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) {
         client.get(from: url) { result in
             switch result {
+            case .success:
+                completion(.failure(Error.invalidData))
             case let .failure(error):
                 completion(.failure(error))
-            default:
-                break
             }
         }
     }
