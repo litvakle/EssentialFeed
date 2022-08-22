@@ -8,7 +8,13 @@
 import Foundation
 
 public class RemoteFeedImageDataLoader {
-    public init(client: Any) {
-        
+    let client: HTTPClient
+    
+    public init(client: HTTPClient) {
+        self.client = client
+    }
+    
+    public func loadImageDataFromURL(url: URL, completion: @escaping (Any) -> Void) {
+        client.get(from: url) { _ in }
     }
 }
