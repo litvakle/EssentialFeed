@@ -126,10 +126,6 @@ class RemoteFeedImageDataLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    func anyData() -> Data {
-        return Data("any data".utf8)
-    }
-    
     private func expect(_ sut: RemoteFeedImageDataLoader, toCompleteWith expectedResult: FeedImageDataLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let url = URL(string: "http://a-given-url.com")!
         let exp = expectation(description: "Wait for load completion")
