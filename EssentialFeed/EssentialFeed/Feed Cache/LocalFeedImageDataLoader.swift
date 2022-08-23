@@ -8,17 +8,24 @@
 import Foundation
 
 public protocol FeedImageDataStore {
-    func retrieve(dataFor url: URL)
+    typealias Result = Swift.Result<Data, Error>
+    func retrieve(dataFor url: URL, completion: @escaping (Result) -> Void)
 }
 
 public class LocalFeedImageDataLoader {
     let store: FeedImageDataStore
     
+    public enum Error: Swift.Error {
+        case failed
+    }
+    
     public init(store: FeedImageDataStore) {
         self.store = store
     }
     
-    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) {
-        store.retrieve(dataFor: url)
+    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataStore.Result) -> Void) {
+        store.retrieve(dataFor: url) { result in
+            completion(.failure(Error.failed))
+        }
     }
 }
