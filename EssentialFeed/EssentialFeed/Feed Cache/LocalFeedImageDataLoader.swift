@@ -39,6 +39,13 @@ public class LocalFeedImageDataLoader {
         }
     }
     
+    public typealias SaveResult = Result<Void, Error>
+    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+        store.save(data, for: url) { _ in
+            
+        }
+    }
+    
     public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
         let task = Task(completion)
         store.retrieve(dataFor: url) { [weak self] result in
