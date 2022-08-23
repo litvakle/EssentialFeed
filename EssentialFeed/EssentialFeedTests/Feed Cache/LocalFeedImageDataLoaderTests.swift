@@ -42,6 +42,15 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         })
     }
     
+    func test_loadImageData_deliversStoredDataWhenStoreCanFindImageDataOnURL() {
+        let (sut, store) = makeSUT()
+        let expectedData = Data("stored data".utf8)
+        
+        expect(sut, toCompleteWith: .success(expectedData), when: {
+            store.complete(withData: expectedData, at: 0)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedImageDataLoader, store: FeedStoreSpy) {
