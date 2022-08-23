@@ -18,15 +18,19 @@ public class LocalFeedImageDataLoader {
     public init(store: FeedImageDataStore) {
         self.store = store
     }
+}
+
+extension LocalFeedImageDataLoader {
+    public typealias LoadResult = FeedImageDataLoader.Result
     
-    private class Task: FeedImageDataLoaderTask {
+    private class LoadImageDataTask: FeedImageDataLoaderTask {
         private var completion: ((FeedImageDataLoader.Result) -> Void)?
         
-        init(_ completion: @escaping (FeedImageDataLoader.Result) -> Void) {
+        init(_ completion: @escaping (LoadResult) -> Void) {
             self.completion = completion
         }
         
-        func complete(with result: FeedImageDataLoader.Result) {
+        func complete(with result: LoadResult) {
             completion?(result)
         }
         
@@ -39,15 +43,8 @@ public class LocalFeedImageDataLoader {
         }
     }
     
-    public typealias SaveResult = Result<Void, Error>
-    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
-        store.save(data, for: url) { _ in
-            
-        }
-    }
-    
-    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-        let task = Task(completion)
+    public func loadImageData(from url: URL, completion: @escaping (LoadResult) -> Void) -> FeedImageDataLoaderTask {
+        let task = LoadImageDataTask(completion)
         store.retrieve(dataFor: url) { [weak self] result in
             guard self != nil else { return }
             
@@ -60,5 +57,15 @@ public class LocalFeedImageDataLoader {
         }
         
         return task
+    }
+}
+
+extension LocalFeedImageDataLoader {
+    public typealias SaveResult = Result<Void, Error>
+    
+    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+        store.insert(data, for: url) { _ in
+            
+        }
     }
 }

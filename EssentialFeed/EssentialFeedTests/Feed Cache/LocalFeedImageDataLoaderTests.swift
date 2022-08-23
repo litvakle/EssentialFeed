@@ -129,9 +129,9 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         }
         
         var receivedMessages = [Message]()
-        var completions = [(FeedImageDataStore.Result) -> Void]()
+        var completions = [(FeedImageDataStore.RetrivalResult) -> Void]()
         
-        func retrieve(dataFor url: URL, completion: @escaping (FeedImageDataStore.Result) -> Void) {
+        func retrieve(dataFor url: URL, completion: @escaping (FeedImageDataStore.RetrivalResult) -> Void) {
             receivedMessages.append(.retrieve(dataFor: url))
             completions.append(completion)
         }
@@ -144,7 +144,7 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
             completions[index](.success(data))
         }
         
-        func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+        func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
             receivedMessages.append(.insert(data: data, for: url))
         }
     }
