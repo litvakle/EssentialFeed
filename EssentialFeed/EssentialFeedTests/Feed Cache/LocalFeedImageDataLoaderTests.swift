@@ -67,6 +67,19 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         XCTAssertTrue(capturedResults.isEmpty, "Expected no delivered results after cancelling task")
     }
     
+    func test_loadImageData_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+             let store = FeedStoreSpy()
+             var sut: LocalFeedImageDataLoader? = LocalFeedImageDataLoader(store: store)
+
+             var received = [FeedImageDataLoader.Result]()
+             _ = sut?.loadImageData(from: anyURL()) { received.append($0) }
+
+             sut = nil
+             store.complete(withData: anyData())
+
+             XCTAssertTrue(received.isEmpty, "Expected no received results after instance has been deallocated")
+         }
+    
     // MARK: - Helpers
     
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedImageDataLoader, store: FeedStoreSpy) {
@@ -112,11 +125,11 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
             completions.append(completion)
         }
         
-        func complete(withError error: Error, at index: Int) {
+        func complete(withError error: Error, at index: Int = 0) {
             completions[index](.failure(error))
         }
         
-        func complete(withData data: Data?, at index: Int) {
+        func complete(withData data: Data?, at index: Int = 0) {
             completions[index](.success(data))
         }
     }

@@ -46,7 +46,9 @@ public class LocalFeedImageDataLoader {
     
     public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
         let task = Task(completion)
-        store.retrieve(dataFor: url) { result in
+        store.retrieve(dataFor: url) { [weak self] result in
+            guard self != nil else { return }
+            
             switch result {
             case let .success(data):
                 if let data = data {
