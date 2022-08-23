@@ -49,16 +49,12 @@ public class LocalFeedImageDataLoader {
         store.retrieve(dataFor: url) { [weak self] result in
             guard self != nil else { return }
             
-            switch result {
-            case let .success(data):
-                if let data = data {
-                    task.complete(with: .success(data))
-                } else {
-                    task.complete(with: .failure(Error.notFound))
+            task.complete(with: result
+                .mapError { _ in Error.failed }
+                .flatMap { data in
+                    data.map { .success($0) } ?? .failure(Error.notFound)
                 }
-            case .failure:
-                task.complete(with: .failure(Error.failed))
-            }
+            )
         }
         
         return task
