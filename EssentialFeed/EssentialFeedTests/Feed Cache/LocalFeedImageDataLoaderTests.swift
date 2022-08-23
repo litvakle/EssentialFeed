@@ -16,6 +16,15 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         XCTAssertTrue(store.receivedMessages.isEmpty)
     }
     
+    func test_loadImageData_requestsStoredDataFromURL() {
+        let (sut, store) = makeSUT()
+        let url = anyURL()
+        
+        sut.loadImageData(from: url) { _ in }
+        
+        XCTAssertEqual(store.receivedMessages, [.retrieve(dataFor: url)])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedImageDataLoader, store: FeedStoreSpy) {
@@ -26,7 +35,15 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         return (sut, store)
     }
     
-    private class FeedStoreSpy {
-        let receivedMessages = [Any]()
+    private class FeedStoreSpy: FeedImageDataStore {
+        enum Message: Equatable {
+            case retrieve(dataFor: URL)
+        }
+        
+        var receivedMessages = [Message]()
+        
+        func retrieve(dataFor url: URL) {
+            receivedMessages.append(.retrieve(dataFor: url))
+        }
     }
 }
