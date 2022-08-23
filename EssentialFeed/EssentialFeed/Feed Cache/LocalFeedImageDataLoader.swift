@@ -24,18 +24,41 @@ public class LocalFeedImageDataLoader {
         self.store = store
     }
     
-    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataStore.Result) -> Void) {
+    private class Task: FeedImageDataLoaderTask {
+        private var completion: ((FeedImageDataLoader.Result) -> Void)?
+        
+        init(_ completion: @escaping (FeedImageDataLoader.Result) -> Void) {
+            self.completion = completion
+        }
+        
+        func complete(with result: FeedImageDataLoader.Result) {
+            completion?(result)
+        }
+        
+        func cancel() {
+            preventFurtherCompletions()
+        }
+        
+        private func preventFurtherCompletions() {
+            completion = nil
+        }
+    }
+    
+    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
+        let task = Task(completion)
         store.retrieve(dataFor: url) { result in
             switch result {
             case let .success(data):
                 if let data = data {
-                    completion(.success(data))
+                    task.complete(with: .success(data))
                 } else {
-                    completion(.failure(Error.notFound))
+                    task.complete(with: .failure(Error.notFound))
                 }
             case .failure:
-                completion(.failure(Error.failed))
+                task.complete(with: .failure(Error.failed))
             }
         }
+        
+        return task
     }
 }
