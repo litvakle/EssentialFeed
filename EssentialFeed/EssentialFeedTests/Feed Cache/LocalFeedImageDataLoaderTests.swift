@@ -34,6 +34,14 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         })
     }
     
+    func test_loadImageData_deliversNotFoundErrorWhenStoreCantFindImageDataOnURL() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: .failure(LocalFeedImageDataLoader.Error.notFound), when: {
+            store.complete(withData: nil, at: 0)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedImageDataLoader, store: FeedStoreSpy) {
@@ -81,6 +89,10 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         
         func complete(withError error: Error, at index: Int) {
             completions[index](.failure(error))
+        }
+        
+        func complete(withData data: Data?, at index: Int) {
+            completions[index](.success(data))
         }
     }
 }
