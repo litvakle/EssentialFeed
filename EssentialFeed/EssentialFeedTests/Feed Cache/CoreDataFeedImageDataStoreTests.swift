@@ -49,6 +49,35 @@ class CoreDataFeedImageDataStoreTests: XCTestCase {
         expect(sut, toCompleteRetrievalWith: .success(lastStoredData), for: url)
     }
     
+    func test_sideEffects_runSerially() {
+        let sut = makeSUT()
+        let url = anyURL()
+        var completedOperationsInOrder = [XCTestExpectation]()
+        let image = LocalFeedImage(id: UUID(), description: "any", location: "any", url: url)
+        
+        let op1 = expectation(description: "Operation 1")
+        sut.insert([image], timestamp: Date()) { _ in
+            completedOperationsInOrder.append(op1)
+            op1.fulfill()
+        }
+        
+        let op2 = expectation(description: "Operation 2")
+        sut.insert(anyData(), for: url) { _ in
+            completedOperationsInOrder.append(op2)
+            op2.fulfill()
+        }
+        
+        let op3 = expectation(description: "Operation 3")
+        sut.insert(anyData(), for: url) { _ in
+            completedOperationsInOrder.append(op3)
+            op3.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5.0)
+        
+        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side effects to run serially, but operations finished in the wrong order")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CoreDataFeedStore {
@@ -92,8 +121,8 @@ class CoreDataFeedImageDataStoreTests: XCTestCase {
                     }
                 }
             }
+
             exp.fulfill()
-            
         }
         
         wait(for: [exp], timeout: 1.0)
