@@ -12,7 +12,7 @@ public final class CoreDataFeedStore: FeedStore {
     private let context: NSManagedObjectContext
     
     public init(storeURL: URL, bundle: Bundle = .main) throws {
-        container = try NSPersistentContainer.load(modelName: "FeedStore", url: storeURL, in: bundle)
+        container = try NSPersistentContainer.load(modelName: "FeedStore2", url: storeURL, in: bundle)
         context = container.newBackgroundContext()
     }
     
@@ -46,14 +46,14 @@ public final class CoreDataFeedStore: FeedStore {
         }
     }
     
-    private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
+    func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
         let context = self.context
         context.perform { action(context) }
     }
 }
 
 @objc(ManagedCache)
-private class ManagedCache: NSManagedObject {
+class ManagedCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var feed: NSOrderedSet
     
@@ -74,7 +74,7 @@ private class ManagedCache: NSManagedObject {
 }
 
 @objc(ManagedFeedImage)
-private class ManagedFeedImage: NSManagedObject {
+class ManagedFeedImage: NSManagedObject {
     @NSManaged var id: UUID
     @NSManaged var imageDescription: String?
     @NSManaged var location: String?
@@ -95,6 +95,14 @@ private class ManagedFeedImage: NSManagedObject {
             managed.url = local.url
             return managed
         })
+    }
+    
+    static func first(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
+        let request = NSFetchRequest<ManagedFeedImage>(entityName: entity().name!)
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedFeedImage.url), url])
+        request.returnsObjectsAsFaults = false
+        request.fetchLimit = 1
+        return try context.fetch(request).first
     }
 }
 

@@ -27,6 +27,16 @@ class CoreDataFeedImageDataStoreTests: XCTestCase {
         expect(sut, toCompleteRetrivalWith: .success(.none), for: nonMatchingURL)
     }
     
+    func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataWithMatchingURL() {
+        let sut = makeSUT()
+        let matchingURL = URL(string: "http://a-url.com")!
+        let data = anyData()
+        
+        insert(data, for: matchingURL, into: sut)
+        
+        expect(sut, toCompleteRetrivalWith: .success(data), for: matchingURL)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CoreDataFeedStore {
@@ -57,12 +67,21 @@ class CoreDataFeedImageDataStoreTests: XCTestCase {
     
     private func insert(_ data: Data, for url: URL, into sut: CoreDataFeedStore, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for data insertion")
-        
-        sut.insert(data, for: url) { result in
-            if case let .failure(error) = result {
-                XCTFail("Failed to insert \(data) with error \(error)", file: file, line: line)
+        let image = LocalFeedImage(id: UUID(), description: "any", location: "any", url: url)
+        sut.insert([image], timestamp: Date()) { result in
+            switch result {
+            case let .failure(error):
+                XCTFail("Failed to save \(image) with error \(error)", file: file, line: line)
+                
+            case .success:
+                sut.insert(data, for: url) { result in
+                    if case let Result.failure(error) = result {
+                        XCTFail("Failed to insert \(data) with error \(error)", file: file, line: line)
+                    }
+                }
             }
             exp.fulfill()
+            
         }
         
         wait(for: [exp], timeout: 1.0)
