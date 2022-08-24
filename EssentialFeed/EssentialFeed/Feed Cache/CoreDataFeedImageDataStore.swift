@@ -14,6 +14,6 @@ extension CoreDataFeedStore: FeedImageDataStore {
     }
     
     public func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
-        
+        completion(.success(()))
     }
 }
