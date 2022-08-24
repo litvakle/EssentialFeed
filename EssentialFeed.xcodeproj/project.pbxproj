@@ -12,6 +12,7 @@
 		3A03751A28B510E600751A17 /* CacheFeedImageDataUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03751928B510E600751A17 /* CacheFeedImageDataUseCaseTests.swift */; };
 		3A03751C28B5D2D000751A17 /* CoreDataFeedImageDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03751B28B5D2D000751A17 /* CoreDataFeedImageDataStoreTests.swift */; };
 		3A03751E28B5D40B00751A17 /* CoreDataFeedImageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03751D28B5D40B00751A17 /* CoreDataFeedImageDataStore.swift */; };
+		3A03752128B5EE9F00751A17 /* FeedStore2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A03751F28B5EE9F00751A17 /* FeedStore2.xcdatamodeld */; };
 		3A07909328B2754E00DA69D3 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A07909228B2754E00DA69D3 /* FeedPresenter.swift */; };
 		3A07909428B275E000DA69D3 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AF003FE28B272B2006B2382 /* Feed.strings */; };
 		3A27B86C28A4EC3400B36296 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A27B86428A4EC3400B36296 /* EssentialFeediOS.framework */; };
@@ -142,6 +143,7 @@
 		3A03751928B510E600751A17 /* CacheFeedImageDataUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedImageDataUseCaseTests.swift; sourceTree = "<group>"; };
 		3A03751B28B5D2D000751A17 /* CoreDataFeedImageDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedImageDataStoreTests.swift; sourceTree = "<group>"; };
 		3A03751D28B5D40B00751A17 /* CoreDataFeedImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedImageDataStore.swift; sourceTree = "<group>"; };
+		3A03752028B5EE9F00751A17 /* FeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore.xcdatamodel; sourceTree = "<group>"; };
 		3A07909228B2754E00DA69D3 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		3A27B86428A4EC3400B36296 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A27B86B28A4EC3400B36296 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +332,7 @@
 				3A6F8F3B28B3BB0300E33319 /* LocalFeedImageDataLoader.swift */,
 				3A03751528B5021900751A17 /* FeedImageDataStore.swift */,
 				3A03751D28B5D40B00751A17 /* CoreDataFeedImageDataStore.swift */,
+				3A03751F28B5EE9F00751A17 /* FeedStore2.xcdatamodeld */,
 				3A48E58928A224E000EC132B /* FeedStore.xcdatamodeld */,
 			);
 			path = "Feed Cache";
@@ -840,6 +843,7 @@
 				3A2F44D7289A89BD006C1391 /* RemoteFeedItem.swift in Sources */,
 				3A03751628B5021900751A17 /* FeedImageDataStore.swift in Sources */,
 				3A48E577289CD1B000EC132B /* FeedCachePolicy.swift in Sources */,
+				3A03752128B5EE9F00751A17 /* FeedStore2.xcdatamodeld in Sources */,
 				3A6F8F3C28B3BB0300E33319 /* LocalFeedImageDataLoader.swift in Sources */,
 				3AF61BE528910ACB00E613D7 /* RemoteFeedLoader.swift in Sources */,
 				3A6F8F3628B3B00700E33319 /* HTTPURLResponse+StatusCode.swift in Sources */,
@@ -1389,6 +1393,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		3A03751F28B5EE9F00751A17 /* FeedStore2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A03752028B5EE9F00751A17 /* FeedStore.xcdatamodel */,
+			);
+			currentVersion = 3A03752028B5EE9F00751A17 /* FeedStore.xcdatamodel */;
+			path = FeedStore2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		3A48E58928A224E000EC132B /* FeedStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
